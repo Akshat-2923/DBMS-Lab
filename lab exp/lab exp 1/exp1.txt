@@ -1,0 +1,7 @@
+Design an ER diagram for an Indian e-commerce platform 
+with entities Customer, Product, Order, OrderItem, 
+Seller, Category, Payment, Delivery, Address. 
+Specify primary keys, composite and 
+multi-valued attributes, weak entities, 
+specialization of Product, and participation 
+constraints. 
