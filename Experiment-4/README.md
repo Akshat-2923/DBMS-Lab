@@ -3,8 +3,12 @@
 This directory demonstrates advanced querying techniques using the Employee-Department-Project schema created in Experiment 3.
 
 ## Files
+- `run.sql`: Self-contained script for online compilers. Creates tables, inserts sample data, and runs all 8 join/subquery types along with EXPLAIN plans.
 - `queries.sql`: Contains the implementations for the requested query types.
 - `explain_plans.sql`: Contains `EXPLAIN` statements used to analyze the execution plans of selected queries.
+
+## Online Compiler Usage
+Copy and paste the entire contents of `run.sql` into an online MySQL compiler (such as OneCompiler or DB Fiddle) and click **Run**.
 
 ## Query Techniques Demonstrated
 1. **INNER JOIN**: Combining employee and department data.

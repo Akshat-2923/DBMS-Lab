@@ -3,9 +3,13 @@
 This directory contains the SQL implementation of the e-commerce ER diagram.
 
 ## Files
+- `run.sql`: Self-contained script for online compilers. Drops existing tables, creates all 12 tables, inserts sample data, displays all tables, and demonstrates cascading deletions.
 - `schema.sql`: Contains the `CREATE TABLE` statements with primary keys, foreign keys, and constraints (NOT NULL, UNIQUE, ON DELETE CASCADE, ON DELETE SET NULL).
 - `sample_data.sql`: Contains `INSERT` statements to populate the tables with realistic sample data.
 - `referential_integrity.sql`: Contains SQL statements that demonstrate referential integrity rules.
+
+## Online Compiler Usage
+Copy and paste the entire contents of `run.sql` into an online MySQL compiler (such as OneCompiler or DB Fiddle) and click **Run**.
 
 ## Referential Integrity Demonstrations
 

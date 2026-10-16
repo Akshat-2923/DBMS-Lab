@@ -20,10 +20,22 @@ SELECT
 FROM Employee e1
 LEFT JOIN Employee e2 ON e1.manager_id = e2.emp_id;
 
-UPDATE EmployeeHierarchy
-SET first_name = 'UpdatedName'
+CREATE VIEW EmployeeSalaryView AS
+SELECT emp_id, first_name, last_name, salary
+FROM Employee;
+
+SELECT * FROM DeptSalarySummary;
+
+SELECT * FROM EmployeeHierarchy;
+
+UPDATE EmployeeSalaryView
+SET salary = salary + 1000
 WHERE emp_id = 6;
 
-UPDATE DeptSalarySummary
-SET total_salary = 500000
-WHERE dept_id = 1;
+SELECT emp_id, first_name, salary 
+FROM Employee 
+WHERE emp_id = 6;
+
+SELECT table_name, is_updatable
+FROM information_schema.views
+WHERE table_schema = DATABASE();
