@@ -61,10 +61,21 @@ The repository is structured logically by experiment number, each covering disti
   - `test_cases.sql`: Tests valid and invalid database state transitions.
   - `README.md`: Expected failure/success conditions for the test cases.
 
+### [Experiment 7: Normalization from UNF to 3NF and BCNF](./Experiment-7/)
+- **Topic:** Relational Database Normalization
+- **Description:** Step-by-step normalization of a denormalized sales relation from UNF through 1NF, 2NF, 3NF, and BCNF with lossless join and dependency preservation verification.
+- **Files Included:**
+  - `run.sql`: Self-contained, runnable script for online MySQL compilers.
+  - `unf_to_1nf.sql`: 1NF table definition with atomic attributes and sample data.
+  - `decomposition_2nf.sql`: 2NF decomposition removing partial dependencies.
+  - `decomposition_3nf_bcnf.sql`: 3NF & BCNF decomposition removing transitive dependencies.
+  - `verification_queries.sql`: Lossless join reconstruction and anomaly queries.
+  - `README.md`: Detailed documentation of functional dependencies, normal forms, and anomalies.
+
 ## Execution Instructions
 
 ### Running in Online Compilers (e.g. OneCompiler, DB Fiddle, SQL Fiddle)
-Every experiment directory (Experiments 2 through 6) includes a self-contained **`run.sql`** file designed specifically for online MySQL compilers:
+Every experiment directory (Experiments 2 through 7) includes a self-contained **`run.sql`** file designed specifically for online MySQL compilers:
 1. Open an online MySQL compiler (such as [OneCompiler MySQL](https://onecompiler.com/mysql) or [DB Fiddle](https://www.db-fiddle.com/)).
 2. Copy and paste the entire contents of the desired experiment's **`run.sql`** file into the editor.
 3. Click **Run**.
