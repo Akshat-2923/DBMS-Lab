@@ -3,8 +3,8 @@
 This directory contains the Entity-Relationship (ER) diagram for an Indian e-commerce platform.
 
 ## Files
-- `ER_Diagram.drawio`: The ER diagram in Draw.io format.
-- `requirements.txt`: The initial problem statement.
+- `ER_Diagram.drawio`: The full ER diagram in Draw.io format.
+- `README.md`: Contains the Mermaid visual diagram, entities, and constraint specifications.
 
 ## ER Diagram (Mermaid Representation)
 
@@ -48,20 +48,22 @@ erDiagram
     }
     
     ELECTRONICS {
-        int warranty_months
+        int product_id PK, FK
         string brand
+        int warranty_months
     }
     
     CLOTHING {
+        int product_id PK, FK
         string size
         string fabric
     }
     
-    ORDER {
+    ORDERS {
         int order_id PK
-        date order_date
-        float total_amount
         int customer_id FK
+        datetime order_date
+        float total_amount
     }
     
     ORDER_ITEM {
@@ -87,16 +89,21 @@ erDiagram
     }
 
     %% Relationships
-    CUSTOMER ||--o{ ORDER : "places (Participation)"
-    CUSTOMER ||--o{ ADDRESS : "has"
-    ORDER ||--|{ ORDER_ITEM : "contains (Weak entity)"
-    PRODUCT ||--o{ ORDER_ITEM : "included in"
-    SELLER ||--o{ PRODUCT : "supplies"
-    CATEGORY ||--o{ PRODUCT : "belongs to"
-    ORDER ||--o| PAYMENT : "has"
-    ORDER ||--o| DELIVERY : "tracked by"
-    
-    %% Specialization (Product -> Electronics / Clothing)
-    PRODUCT ||--o| ELECTRONICS : "is-a"
-    PRODUCT ||--o| CLOTHING : "is-a"
+    CUSTOMER ||--o{ ADDRESS : "has (1:N)"
+    CUSTOMER ||--o{ ORDERS : "places (1:N)"
+    SELLER ||--o{ PRODUCT : "supplies (1:N)"
+    CATEGORY ||--o{ PRODUCT : "contains (1:N)"
+    PRODUCT ||--o| ELECTRONICS : "is-a (Specialization)"
+    PRODUCT ||--o| CLOTHING : "is-a (Specialization)"
+    ORDERS ||--|{ ORDER_ITEM : "contains (1:N, Total Participation)"
+    PRODUCT ||--o{ ORDER_ITEM : "ordered-in (1:N)"
+    ORDERS ||--|| PAYMENT : "paid-via (1:1)"
+    ORDERS ||--|| DELIVERY : "fulfilled-by (1:1)"
 ```
+
+## Structural Design Details
+- **Primary Keys:** Every strong entity possesses an explicit unique identifier (`customer_id`, `seller_id`, `product_id`, `order_id`, etc.).
+- **Composite Attributes:** The customer delivery location contains composite sub-attributes (`street`, `city`, `state`, `zip`).
+- **Multi-valued Attributes:** The customer entity supports multiple contact telephone numbers.
+- **Weak Entity / Total Participation:** `ORDER_ITEM` is bound to `ORDERS` via total participation (every order must contain at least one order item).
+- **Specialization / Generalization:** `PRODUCT` specializes into subclass entities `ELECTRONICS` and `CLOTHING` inheriting the primary key.

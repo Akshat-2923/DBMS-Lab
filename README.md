@@ -1,97 +1,74 @@
-# DBMS Lab Experiments
+# Database Management Systems (DBMS) Laboratory
 
-This repository contains the completed experiments for the Database Management Systems (DBMS) Lab course. 
-The repository is structured logically by experiment number, each covering distinct DBMS concepts ranging from Entity-Relationship modeling to stored procedures and triggers.
+This repository contains the complete laboratory curriculum for Database Management Systems (DBMS). Each experiment is organized in a self-contained directory containing the professional documentation and an all-in-one, run-ready SQL script engineered to execute flawlessly in online compilers and local MySQL environments.
 
-## Experiments Overview
+---
 
-### [Experiment 1: ER Diagram](./Experiment-1/)
-- **Topic:** Database Design (ER Modeling)
-- **Description:** Design an ER diagram for an Indian e-commerce platform using concepts like weak entities, multi-valued attributes, composite attributes, and specialization.
-- **Files Included:** 
-  - `ER_Diagram.drawio`: The raw diagram file.
-  - `README.md`: Contains a Mermaid visual representation of the ER diagram.
-  - `requirements.txt`: Requirements prompt.
+## Curriculum Overview
 
-### [Experiment 2: Relational Schema](./Experiment-2/)
-- **Topic:** Relational Schema & Integrity Constraints
-- **Description:** Conversion of the ER diagram into a relational schema with proper primary/foreign keys, constraints, and cascading rules.
-- **Files Included:** 
-  - `run.sql`: Self-contained, runnable script for online MySQL compilers.
-  - `schema.sql`: Table definitions.
-  - `sample_data.sql`: Example insertion data.
-  - `referential_integrity.sql`: Queries demonstrating FK constraint enforcement.
-  - `README.md`: Explanations of referential integrity rules.
+| Experiment | Title / Topic | Run-Ready SQL File | Key Concepts Covered |
+| :--- | :--- | :--- | :--- |
+| **[Experiment 1](./Experiment-1/)** | **E-Commerce ER Modeling** | `ER_Diagram.drawio` | Weak entities, composite/multi-valued attributes, specialization, cardinality |
+| **[Experiment 2](./Experiment-2/)** | **Relational Schema & Constraints** | `ecommerce_schema.sql` | 12 tables, primary keys, foreign keys, `ON DELETE CASCADE`, `ON DELETE SET NULL` |
+| **[Experiment 3](./Experiment-3/)** | **DML & Basic Querying** | `employee_management.sql` | 30 employees, 5 departments, 8 projects, Aggregates, `GROUP BY`, `HAVING`, `CASE` |
+| **[Experiment 4](./Experiment-4/)** | **Advanced Joins & Subqueries** | `joins_and_subqueries.sql` | INNER, LEFT, SELF, 3-way joins, correlated subqueries, `EXISTS`, set operations, `EXPLAIN` |
+| **[Experiment 5](./Experiment-5/)** | **Views & Recursive CTEs** | `views_and_recursive_cte.sql` | Virtual tables, updatability checks via `information_schema`, hierarchical CTE |
+| **[Experiment 6](./Experiment-6/)** | **Procedures, Triggers & Auditing** | `procedures_and_triggers.sql` | `transfer_employee` stored procedure, rollback handlers, salary & audit triggers |
+| **[Experiment 7](./Experiment-7/)** | **Schema Normalization** | `schema_normalization.sql` | Step-by-step UNF $\rightarrow$ 1NF $\rightarrow$ 2NF $\rightarrow$ 3NF $\rightarrow$ BCNF, lossless join verification |
 
-### [Experiment 3: Employee-Department-Project Schema](./Experiment-3/)
-- **Topic:** Basic SQL Queries (Selection, Aggregates, GROUP BY)
-- **Description:** Creates an organizational structure and runs fundamental Data Manipulation Language (DML) statements.
-- **Files Included:** 
-  - `run.sql`: Self-contained, runnable script for online MySQL compilers.
-  - `schema.sql`: Schema definition.
-  - `sample_data.sql`: Generated dataset for 30 employees, 5 departments, 8 projects.
-  - `queries.sql`: Implementation of basic select, group, and aggregate queries.
-  - `README.md`: Directory overview.
+---
 
-### [Experiment 4: Joins and Subqueries](./Experiment-4/)
-- **Topic:** Advanced Querying
-- **Description:** Demonstrates complex joining methods and nested subqueries on the organizational schema.
-- **Files Included:** 
-  - `run.sql`: Self-contained, runnable script for online MySQL compilers.
-  - `queries.sql`: Implementations of INNER, LEFT, SELF, 3-way joins, and subqueries.
-  - `explain_plans.sql`: `EXPLAIN` statements for query analysis.
-  - `README.md`: Detailed descriptions of each query type.
+## Repository Structure
 
-### [Experiment 5: Views and Recursive CTEs](./Experiment-5/)
-- **Topic:** Virtual Tables and Hierarchical Querying
-- **Description:** Implements database views and demonstrates how to query a recursive employee hierarchy using CTEs.
-- **Files Included:** 
-  - `run.sql`: Self-contained, runnable script for online MySQL compilers.
-  - `views.sql`: View definitions and updatability tests.
-  - `recursive_cte.sql`: Traversal of the managerial hierarchy.
-  - `README.md`: Notes on view updatability rules.
+```text
+DBMS-Lab/
+├── .gitignore
+├── README.md
+├── Experiment-1/
+│   ├── ER_Diagram.drawio
+│   └── README.md
+├── Experiment-2/
+│   ├── ecommerce_schema.sql
+│   └── README.md
+├── Experiment-3/
+│   ├── employee_management.sql
+│   └── README.md
+├── Experiment-4/
+│   ├── joins_and_subqueries.sql
+│   └── README.md
+├── Experiment-5/
+│   ├── views_and_recursive_cte.sql
+│   └── README.md
+├── Experiment-6/
+│   ├── procedures_and_triggers.sql
+│   └── README.md
+└── Experiment-7/
+    ├── schema_normalization.sql
+    └── README.md
+```
 
-### [Experiment 6: Stored Procedures and Triggers](./Experiment-6/)
-- **Topic:** Procedural SQL, Transactions, and Auditing
-- **Description:** Implements custom logic using stored procedures and enforces strict business rules using table triggers.
-- **Files Included:** 
-  - `run.sql`: Self-contained, runnable script for online MySQL compilers.
-  - `procedure.sql`: Stored procedure for employee transfer.
-  - `triggers.sql`: Triggers for salary validation and logging.
-  - `test_cases.sql`: Tests valid and invalid database state transitions.
-  - `README.md`: Expected failure/success conditions for the test cases.
-
-### [Experiment 7: Normalization from UNF to 3NF and BCNF](./Experiment-7/)
-- **Topic:** Relational Database Normalization
-- **Description:** Step-by-step normalization of a denormalized sales relation from UNF through 1NF, 2NF, 3NF, and BCNF with lossless join and dependency preservation verification.
-- **Files Included:**
-  - `run.sql`: Self-contained, runnable script for online MySQL compilers.
-  - `unf_to_1nf.sql`: 1NF table definition with atomic attributes and sample data.
-  - `decomposition_2nf.sql`: 2NF decomposition removing partial dependencies.
-  - `decomposition_3nf_bcnf.sql`: 3NF & BCNF decomposition removing transitive dependencies.
-  - `verification_queries.sql`: Lossless join reconstruction and anomaly queries.
-  - `README.md`: Detailed documentation of functional dependencies, normal forms, and anomalies.
+---
 
 ## Execution Instructions
 
-### Running in Online Compilers (e.g. OneCompiler, DB Fiddle, SQL Fiddle)
-Every experiment directory (Experiments 2 through 7) includes a self-contained **`run.sql`** file designed specifically for online MySQL compilers:
-1. Open an online MySQL compiler (such as [OneCompiler MySQL](https://onecompiler.com/mysql) or [DB Fiddle](https://www.db-fiddle.com/)).
-2. Copy and paste the entire contents of the desired experiment's **`run.sql`** file into the editor.
-3. Click **Run**.
-4. The script creates the necessary tables, inserts required sample data, and outputs all query results cleanly with no configuration required.
+### Option 1: Running in Online Compilers (Instant Execution)
+Every experiment's SQL file is completely self-contained and idempotent (includes clean table reset logic, schema creation, data insertion, and all required operations):
+1. Open an online MySQL compiler (e.g., [OneCompiler MySQL](https://onecompiler.com/mysql) or [DB Fiddle](https://www.db-fiddle.com/)).
+2. Navigate to the desired experiment folder above and copy the entire contents of the `.sql` file.
+3. Paste into the compiler editor and click **Run**.
+4. All tables, outputs, and verification results will render immediately in the output console with zero setup.
 
-### Running in Local MySQL Client / Workbench
-To execute the SQL scripts on a local MySQL server:
-1. Create and select a new database:
+### Option 2: Running in Local MySQL Server / Workbench
+1. Connect to your MySQL instance:
+   ```bash
+   mysql -u root -p
+   ```
+2. Create and select the database:
    ```sql
-   CREATE DATABASE dbms_lab;
+   CREATE DATABASE IF NOT EXISTS dbms_lab;
    USE dbms_lab;
    ```
-2. For each experiment, execute `run.sql` directly or execute the individual modular files:
+3. Run any experiment file directly:
    ```sql
-   SOURCE path/to/schema.sql;
-   SOURCE path/to/sample_data.sql;
-   SOURCE path/to/queries.sql;
+   SOURCE path/to/Experiment-2/ecommerce_schema.sql;
    ```
-3. *Note*: In `Experiment-2` and `Experiment-6`, individual edge case tests inside `referential_integrity.sql` and `test_cases.sql` are intentionally designed to violate constraints and raise errors to prove that the schema rules and triggers work. To test these error cases, run their statements individually.

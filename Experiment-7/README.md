@@ -6,11 +6,7 @@ Given a denormalized Sales table, identify candidate keys and functional depende
 ---
 
 ## Files in this Directory
-- `run.sql`: Self-contained, complete executable script for online MySQL compilers (e.g., OneCompiler, DB Fiddle) and local MySQL. Creates tables, inserts sample data, performs 2NF/3NF/BCNF decompositions, and runs lossless join verification queries.
-- `unf_to_1nf.sql`: Converts denormalized sales records with multi-valued repeating items into atomic First Normal Form (`Sales_1NF`).
-- `decomposition_2nf.sql`: Decomposes `Sales_1NF` into Second Normal Form relations by removing partial dependencies on the composite candidate key `(SaleID, ProductID)`.
-- `decomposition_3nf_bcnf.sql`: Decomposes 2NF relations into Third Normal Form and Boyce–Codd Normal Form by eliminating transitive dependencies (`SupplierID -> SupplierName`).
-- `verification_queries.sql`: Contains lossless join reconstruction queries, row-count equality verification, and update anomaly comparison demonstrations.
+- `schema_normalization.sql`: Complete, self-contained, run-ready script for online MySQL compilers (e.g., OneCompiler, DB Fiddle) and local MySQL. Creates tables, inserts sample data, performs 2NF/3NF/BCNF decompositions, and runs lossless join verification queries.
 
 ---
 
@@ -102,6 +98,6 @@ Every identified functional dependency is preserved within individual relations:
 
 ## Online Compiler Usage
 1. Open an online MySQL compiler (e.g. [OneCompiler MySQL](https://onecompiler.com/mysql) or [DB Fiddle](https://www.db-fiddle.com/)).
-2. Copy and paste the entire contents of `run.sql` into the editor.
+2. Copy and paste the entire contents of `schema_normalization.sql` into the editor.
 3. Click **Run**.
 4. The script executes the entire normalization lifecycle and prints all tables and verification checks directly to the console.

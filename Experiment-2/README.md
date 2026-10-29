@@ -1,25 +1,24 @@
-# Experiment 2: Relational Schema
+# Experiment 2: Relational Schema & Integrity Constraints
 
-This directory contains the SQL implementation of the e-commerce ER diagram.
+This directory contains the relational database implementation of the Indian e-commerce platform.
 
 ## Files
-- `run.sql`: Self-contained script for online compilers. Drops existing tables, creates all 12 tables, inserts sample data, displays all tables, and demonstrates cascading deletions.
-- `schema.sql`: Contains the `CREATE TABLE` statements with primary keys, foreign keys, and constraints (NOT NULL, UNIQUE, ON DELETE CASCADE, ON DELETE SET NULL).
-- `sample_data.sql`: Contains `INSERT` statements to populate the tables with realistic sample data.
-- `referential_integrity.sql`: Contains SQL statements that demonstrate referential integrity rules.
+- `ecommerce_schema.sql`: Complete, self-contained, run-ready script for online compilers (e.g. OneCompiler, DB Fiddle) and MySQL servers.
+
+## Contents of `ecommerce_schema.sql`
+1. **Schema Initialization:** Drops existing tables with foreign key checks toggled safely for idempotent execution.
+2. **Table Definitions (12 Tables):** `Customer`, `CustomerPhone`, `Address`, `Category`, `Seller`, `Product`, `Electronics`, `Clothing`, `Orders`, `OrderItem`, `Payment`, and `Delivery`.
+3. **Constraints Implemented:**
+   - `PRIMARY KEY` and `AUTO_INCREMENT` on all major entities.
+   - `FOREIGN KEY` references linking related tables.
+   - `NOT NULL` on mandatory columns.
+   - `UNIQUE` constraints on emails, GST numbers, and 1:1 payment/delivery bindings.
+   - `ON DELETE CASCADE` on parent-child dependencies (e.g., deleting an order cascades to its items, payment, and delivery).
+   - `ON DELETE SET NULL` on optional associations (e.g., deleting a category sets product `category_id` to NULL).
+4. **Sample Data:** Realistic Indian e-commerce customer, seller, product, and transaction records.
+5. **Verification & Cascading DML:** Demonstrates table retrieval and verifies cascading delete and set null actions.
 
 ## Online Compiler Usage
-Copy and paste the entire contents of `run.sql` into an online MySQL compiler (such as OneCompiler or DB Fiddle) and click **Run**.
-
-## Referential Integrity Demonstrations
-
-The file `referential_integrity.sql` demonstrates how the schema enforces constraints:
-
-1. **Foreign Key Violation (INSERT)**:
-   Attempting to insert an `OrderItem` with a non-existent `order_id` (e.g., 999) will fail because `order_id` must exist in the `Orders` table.
-
-2. **ON DELETE CASCADE**:
-   Deleting an order from the `Orders` table will automatically delete the corresponding records in the `OrderItem`, `Payment`, and `Delivery` tables. This ensures no orphaned child records remain. (This statement will succeed and demonstrate the cascade).
-
-3. **ON DELETE SET NULL**:
-   Deleting a category from the `Category` table will not delete the associated products. Instead, the `category_id` in the `Product` table for those products will be set to `NULL`. (This statement will succeed and demonstrate the set null behavior).
+1. Open an online MySQL compiler (such as [OneCompiler MySQL](https://onecompiler.com/mysql) or [DB Fiddle](https://www.db-fiddle.com/)).
+2. Copy and paste the entire contents of `ecommerce_schema.sql` into the editor.
+3. Click **Run** to execute the schema, populate data, and view output tables.

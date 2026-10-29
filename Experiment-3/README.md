@@ -1,18 +1,28 @@
 # Experiment 3: Employee-Department-Project Schema and Basic Queries
 
-This directory contains the schema, sample data, and basic SQL queries demonstrating fundamental DML operations on an Employee-Department-Project database.
+This directory contains the schema, sample data, and SQL queries demonstrating fundamental DML operations on an organizational database.
 
 ## Files
-- `run.sql`: Self-contained script for online compilers. Drops existing tables, creates the schema, inserts sample data (30 employees, 5 departments, 8 projects), and runs all 7 required query types.
-- `schema.sql`: Creates the `Department`, `Employee`, `Project`, and `EmployeeProject` tables.
-- `sample_data.sql`: Populates the tables with 30 employees, 5 departments, 8 projects, and project assignments.
-- `queries.sql`: Contains basic queries demonstrating:
-  - Selection (filtering rows based on conditions)
-  - Projection (selecting specific columns)
-  - Aggregate functions (COUNT, AVG, MAX)
-  - `GROUP BY` and `HAVING` clauses
-  - `CASE` expressions for conditional logic
-  - `ORDER BY` for sorting results
+- `employee_management.sql`: Complete, self-contained, run-ready script for online compilers (e.g. OneCompiler, DB Fiddle) and local MySQL.
+
+## Contents of `employee_management.sql`
+1. **Schema Initialization:** Drops existing tables with foreign key checks toggled safely.
+2. **Table Definitions:**
+   - `Department`: 5 departments (`dept_id`, `dept_name`, `location`).
+   - `Employee`: 30 employees (`emp_id`, `first_name`, `last_name`, `salary`, `dept_id`, `manager_id`, `hire_date`).
+   - `Project`: 8 corporate projects (`project_id`, `project_name`, `budget`, `dept_id`).
+   - `EmployeeProject`: Many-to-many relationship tracking project allocations and hours worked.
+3. **Sample Dataset:** Realistic records including management hierarchies, department allocations, and project assignments.
+4. **Queries Demonstrated:**
+   - **Selection:** Filtering employee rows based on salary conditions (`salary > 70000`).
+   - **Projection:** Selecting specific attributes (`first_name`, `last_name`, `hire_date`).
+   - **Aggregate Functions:** Computing summary metrics (`COUNT(*)`, `AVG(salary)`, `MAX(salary)`).
+   - **GROUP BY:** Grouping employee counts by department.
+   - **HAVING Clause:** Filtering grouped department results by average compensation (`HAVING AVG(salary) > 60000`).
+   - **CASE Expression:** Classifying employees into salary tiers (`High Earner`, `Medium Earner`, `Entry Level`).
+   - **ORDER BY:** Multi-level sorting by compensation descending and hire date ascending.
 
 ## Online Compiler Usage
-Copy and paste the entire contents of `run.sql` into an online MySQL compiler (such as OneCompiler or DB Fiddle) and click **Run**.
+1. Open an online MySQL compiler (such as [OneCompiler MySQL](https://onecompiler.com/mysql) or [DB Fiddle](https://www.db-fiddle.com/)).
+2. Copy and paste the entire contents of `employee_management.sql` into the editor.
+3. Click **Run** to execute the script and view all output tables.
